@@ -200,6 +200,48 @@ heatmap.2(as.matrix(t(dat)),
           margins = c(5,5))
 dev.off()
 
+### Making volcano plot instead of heatmap
+
+res = readRDS(paste0(work_path, "/analysis/monoclonal_EB_TF_screen/celltype_changes/rep1/hooke_result.rds"))
+
+cell_group = data.frame(cell_group = names(EB_celltype_color_code)[names(EB_celltype_color_code) %in% res$cell_group],
+                        cell_group_id = 1:12)
+res$log10_fdr = -log10(res$fdr)
+res = res %>% left_join(cell_group, by = "cell_group")
+
+p = ggplot() +
+    geom_point(data = res, aes(x = delta_log_abund, y = log10_fdr)) +
+    geom_point(data = subset(res, fdr < 0.1), aes(x = delta_log_abund, y = log10_fdr), size = 5.5) +
+    geom_point(data = subset(res, fdr < 0.1), aes(x = delta_log_abund, y = log10_fdr, color = cell_group), size = 5) +
+    geom_text(data=subset(res, fdr < 0.1), 
+              aes(delta_log_abund, log10_fdr, label=target_y), hjust = 0, nudge_x = 0.05) +
+    geom_hline(aes(yintercept = 1), color = "grey80") +
+    geom_vline(aes(xintercept = 0), color = "grey80") +
+    labs(x = "Log Fold Change", y = "-Log10(FDR)", title = "") +
+    xlim(-2, 2) +
+    ylim(0, 5.5) +
+    theme_classic(base_size = 10) +
+    scale_color_manual(values=EB_celltype_color_code) +
+    theme(legend.position="none") +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    theme(axis.text.x = element_text(color="black"), axis.text.y = element_text(color="black")) 
+ggsave(paste0(work_path, "/hooke_volcano_plot_1_label_gene.pdf"), p, width = 5.5, height = 3)
+
+p = ggplot() +
+    geom_point(data = res, aes(x = delta_log_abund, y = log10_fdr)) +
+    geom_text(data=subset(res, fdr < 0.1), 
+              aes(delta_log_abund, log10_fdr, label=cell_group_id), hjust = 0, nudge_x = 0.05) +
+    geom_hline(aes(yintercept = 1), color = "grey80") +
+    geom_vline(aes(xintercept = 0), color = "grey80") +
+    labs(x = "Log Fold Change", y = "-Log10(FDR)", title = "") +
+    xlim(-2, 2) +
+    ylim(0, 5.5) +
+    theme_classic(base_size = 10) +
+    theme(legend.position="none") +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    theme(axis.text.x = element_text(color="black"), axis.text.y = element_text(color="black")) 
+ggsave(paste0(work_path, "/share/hooke_volcano_plot_1_label_cell_group.pdf"), p, width = 5.5, height = 3)
+
 
 ############################################################
 ### Step-5: making boxplot with cell-type fractions changing
