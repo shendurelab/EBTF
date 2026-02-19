@@ -1,8 +1,7 @@
 
 #############################################################################
 ### Assiging cells to each mEBs based on the barcode, on "arrayed" experiment
-### Chengxiang Qiu
-### cxqiu@uw.edu
+### contact: cxqiu@uw.edu
 
 source("help_script.R")
 mouse_gene = read.table("mouse.GRCm38.p6.geneID.txt", header = T, as.is = T)

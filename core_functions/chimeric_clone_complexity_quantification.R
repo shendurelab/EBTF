@@ -2,8 +2,9 @@
 
 #######################################################
 ### Calculate logFC between sgRNA from plasmid and mEBs
-### Chengxiang Qiu
-### cxqiu@uw.edu
+### contact: cxqiu@uw.edu
+
+### Loading necessary function and gene meta data
 
 source("help_script.R")
 mouse_gene = read.table("mouse.GRCm38.p6.geneID.txt", header = T, as.is = T)

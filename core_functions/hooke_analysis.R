@@ -1,8 +1,7 @@
 
 #############################################
 ### Identifying cell-type composition changes
-### Chengxiang Qiu
-### cxqiu@uw.edu
+### contact: cxqiu@uw.edu
 
 ### Please read the tutorial of Hooke package:
 ### https://cole-trapnell-lab.github.io/projects/hooke/

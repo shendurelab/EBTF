@@ -1,8 +1,7 @@
 
 ######################################
 ### Cross-experiment data integration 
-### Chengxiang Qiu
-### cxqiu@uw.edu
+### contact: cxqiu@uw.edu
 
 #########################################################
 ### Step-1: Integration of multiple datasets using Seurat
