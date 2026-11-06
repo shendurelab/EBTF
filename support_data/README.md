@@ -7,6 +7,6 @@ This folder contains supporting data for the TF screen of monoclonal EBs, coveri
 | File | Description |
 |------|-------------|
 | `cell_clonotype.rds` | Assignment of cells (`cell_id` column) to individual monoclonal EBs (`clonotype_id` column). |
-| `gRNA_matrix` | Read count matrix of gRNAs (rows) by cells (columns). |
+| `gRNA_matrix.rds` | Read count matrix of gRNAs (rows) by cells (columns). |
 | `cell_clonotype_gRNA.rds` | The top-represented gRNA for each monoclonal EB. |
 
